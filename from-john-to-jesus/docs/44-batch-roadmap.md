@@ -1,19 +1,19 @@
 # 44-Batch Roadmap
 
-Every batch contains 10 separate 4:5 cards. Every card has one narrative beat, one scene, one quotation or narration unit, and a source-status block.
+Every chapter/batch contains 10 separate 4:5 cards. Every card has one narrative beat, one scene, one quotation, narration, or explicitly labeled source-analysis unit, and a source-status block.
 
-| Season | Batches | Topics | Images |
+The editorial classification is chronological and source-critical first, thematic second. The five-Part movement is `Witness → Water → Cost and Handover → Way → Light and Love`.
+
+| Part | Chapters | Editorial function | Images |
 |---|---:|---|---:|
-| 01 · John to the Jordan | 01–06 | adult John appears; wilderness; Jordan crowds; social ethics; fruit and judgment; the stronger one | 60 |
-| 02 · The Jordan Encounter | 07–11 | Jesus approaches; Mark; Matthew; Luke; Johannine witness | 50 |
-| 03 · Two Movements | 12–15 | John's disciples; Jesus' disciples; purification dispute; “He must increase” | 40 |
-| 04 · Prison, Question, Witness | 16–20 | Herod challenged; prison; the coming one; deeds as answer; Jesus evaluates John | 50 |
-| 05 · The Death of the Forerunner | 21–24 | Gospel death tradition; Josephus; burial; Jesus hears the news | 40 |
-| 06 · Jesus After John | 25–36 | Proclamation; kingdom; healing; table fellowship; forgiveness; Sabbath; seed; storm; bread; service; Jerusalem; death and empty tomb | 120 |
-| 07 · Light & Love | 37–44 | Witness to light; living water; bread of life; light of the world; good shepherd; vine; love one another; peace | 80 |
+| I · THE WITNESS | 01–06 | John appears, calls, cleanses, confronts, and points beyond himself | 60 |
+| II · THE WATER | 07–15 | Jesus enters John's river; four Gospel tellings and two movements are separated | 90 |
+| III · THE COST OF WITNESS | 16–24 | John challenges power, questions from prison, dies, and hands the story forward | 90 |
+| IV · THE WAY OPENS | 25–36 | Jesus' mission after John's arrest, led by the earliest extant Markan spine | 120 |
+| V · THE LIGHT & LOVE | 37–44 | Later Johannine theological expansion, explicitly labeled as such | 80 |
 | **Total** | **01–44** |  | **440** |
 
-## Batch titles
+## Chapter titles
 
 1. John to the Jordan: Source-Layer Orientation
 2. Wilderness Life

@@ -35,9 +35,12 @@ DIRECT_JOHN_BAPTIST
 DIRECT_OTHER
 NARRATION
 EXTERNAL_SOURCE
+SOURCE_ANALYSIS
 ```
 
 Never turn narrative prose into spoken dialogue. A concise excerpt may be used, but its speaker/type must remain accurate.
+
+`SOURCE_ANALYSIS` is reserved for an explicitly labeled comparison or conclusion card. It must not use quotation marks or visually impersonate words spoken by John, Jesus, a narrator, or an ancient source.
 
 ## Transmission Gate
 
@@ -49,4 +52,3 @@ Use “earliest recoverable Greek text,” not “unaltered original.” Disting
 - later interpretation
 
 For a variant, present the concrete readings and witnesses/critical-text status. Do not invent a secret editor or council.
-

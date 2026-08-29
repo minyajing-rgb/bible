@@ -16,6 +16,8 @@ This repository is the production archive for a 44-batch, 440-image historical a
 ## Canonical assets
 
 - [44-batch roadmap](docs/44-batch-roadmap.md)
+- [Editorial architecture and classification](skills/from-john-to-jesus-production/references/editorial-architecture.md)
+- [Chapter template and full sample](skills/from-john-to-jesus-production/references/chapter-template-and-sample.md)
 - [Scripture ledger](ledger/scripture-ledger.jsonl)
 - [Reusable production skill](skills/from-john-to-jesus-production/SKILL.md)
 - [Approved visual anchor](skills/from-john-to-jesus-production/assets/approved-minimal-line-style.png)

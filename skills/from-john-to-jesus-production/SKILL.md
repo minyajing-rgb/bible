@@ -1,11 +1,21 @@
 ---
 name: from-john-to-jesus-production
-description: Produce, audit, and publish 10-card batches for GGC Spirituality Series “From John to Jesus,” with John fixed as John the Baptist, source-layer labeling, exact speaker identity, and the approved ultra-minimal black-line visual system. Use for this exact 44-batch series; do not use for apostle John or the beloved disciple.
+description: Plan the editorial architecture and produce, audit, and publish 10-card chapters for GGC Spirituality Series “From John to Jesus,” with John fixed as John the Baptist, source-layer labeling, exact speaker identity, and the approved ultra-minimal black-line visual system. Use for this exact 44-chapter series; do not use for apostle John or the beloved disciple.
 ---
 
 # From John to Jesus Production
 
 Produce one complete batch of 10 separate 4:5 final PNG cards at a time. A batch is not complete until its images, ledger rows, batch README, and progress index agree.
+
+## Editorial hierarchy
+
+The fixed hierarchy is:
+
+```text
+Series → 5 Parts → 44 Chapters/Batches → 10 Cards per Chapter → 440 Cards
+```
+
+Before planning or changing a chapter, read [editorial architecture](references/editorial-architecture.md). When drafting a chapter brief or ledger, read [chapter template and sample](references/chapter-template-and-sample.md). Classify by chronology and source layer before applying the spiritual theme.
 
 ## Deliverable invariant
 
@@ -35,15 +45,16 @@ The default main line begins with the adult John in the wilderness and moves thr
 ## Required workflow
 
 1. Read [source and identity gates](references/source-and-identity-gates.md).
-2. Read [visual and batch specification](references/visual-and-batch-spec.md) and visually inspect `assets/approved-minimal-line-style.png`. This asset is the mandatory style anchor, not optional inspiration.
-3. Before selecting scenes, confirm that the batch advances the requested John-the-Baptist → Jesus arc. Reject a source-accurate batch if it is on the wrong narrative branch.
-4. Select the next unfinished batch from `docs/44-batch-roadmap.md` and inspect the ledger for duplicates.
-5. Build 10 ledger rows before generating images. Each row has one beat, one scene, one speaker/narrator, one exact quotation unit, and one source-status note.
-6. Generate 10 separate no-text illustrations, one call per asset. Pass the approved style anchor into every generation call; after card 01 is accepted, pass it as the character anchor too.
-7. Reject and regenerate any image with shading, realistic anatomy, watercolor/pencil texture, detailed architecture, oversized figures, multiple accent hues, or invented people/props.
-8. Render exact typography deterministically with `scripts/render_cards.py`; do not ask the image model to spell Greek, source notes, or branding.
-9. Verify all 10 final cards as a contact sheet and at full size. At contact-sheet size the quotation, verse, and source-layer category must remain identifiable; at full size every source field must be comfortably readable. Then audit the ledger with `scripts/audit_batch.py`.
-10. Update repository progress only after all ten final files exist.
+2. Read [editorial architecture](references/editorial-architecture.md), locate the next chapter in its Part, and inspect `docs/44-batch-roadmap.md` plus the ledger for duplicates.
+3. Read [chapter template and sample](references/chapter-template-and-sample.md). Write the chapter's central question, one-sentence claim, source spine, later layers, exclusions, opening state, ending state, and ten-card function map before drafting any image prompt.
+4. Reject a source-accurate chapter if it sits on the wrong narrative branch or imports a later source layer without labeling it.
+5. Read [visual and batch specification](references/visual-and-batch-spec.md) and visually inspect `assets/approved-minimal-line-style.png`. This asset is the mandatory style anchor, not optional inspiration.
+6. Build 10 ledger rows before generating images. Each row has one beat, one scene, one speaker/narrator or explicitly labeled source-analysis unit, one text unit, and one source-status note.
+7. Generate 10 separate no-text illustrations, one call per asset. Pass the approved style anchor into every generation call; after card 01 is accepted, pass it as the character anchor too.
+8. Reject and regenerate any image with shading, realistic anatomy, watercolor/pencil texture, detailed architecture, oversized figures, multiple accent hues, or invented people/props.
+9. Render exact typography deterministically with `scripts/render_cards.py`; do not ask the image model to spell Greek, source notes, or branding.
+10. Verify all 10 final cards as a contact sheet and at full size. At contact-sheet size the quotation, verse, and source-layer category must remain identifiable; at full size every source field must be comfortably readable. Then audit the ledger with `scripts/audit_batch.py`.
+11. Update repository progress only after all ten final files exist and the chapter conclusion matches its planned one-sentence claim.
 
 ## Source labels
 
