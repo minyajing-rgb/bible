@@ -1,77 +1,85 @@
 # Editorial Architecture
 
-## What determines the classification
+## The reader journey controls the order
 
-Classify material in this order. A later criterion may shape presentation but must not override an earlier one.
+The series begins where a church reader has the most common ground, then gradually exposes how the evidence changes. Classification order:
 
-1. **Historical chronology** — John appears, baptizes, meets Jesus, leads a parallel movement, is imprisoned, questions, dies, and is followed by Jesus' expanded mission.
-2. **Source layer** — Markan narrative spine; Matthean/Lukan redaction; Johannine reframing or later theology; Josephus external witness; scribal variant; later interpretation.
-3. **Character handover** — John acts and speaks; John encounters and identifies Jesus; the two movements overlap; John's public role contracts; Jesus' mission expands.
-4. **Thematic movement** — witness, water, cost and handover, way, light and love.
-5. **Visual rhythm** — action, proclamation, relationship, silence, and source comparison. Visual variety never authorizes an invented event.
+1. **Canonical common ground** — show all four Gospel tellings and their literary relationships without beginning in accusation.
+2. **John's own voice and practice** — wilderness, water, ethics, judgment, and the stronger one.
+3. **John–Jesus intersection** — baptism, dialogue, witness, disciples, and parallel movements.
+4. **Question answered by deeds** — prison question, Jesus' actions, returned report, and Jesus' evaluation of John.
+5. **Death and handover** — Gospel and Josephus accounts, burial, and transition.
+6. **Jesus after John** — the earliest extant Markan narrative spine.
+7. **Later light-and-love layer** — mature Johannine theology, explicitly labeled last.
+
+Within every chapter, the evidence order is: earliest recoverable Greek → literal meaning → sourced scene → dated change record.
 
 ## Fixed hierarchy
 
 ```text
 GGC Spirituality Series · From John to Jesus
-└── 5 Parts
+└── 7 Parts
     └── 44 Chapters / production batches
-        └── 10 cards per chapter
-            └── 1 source-controlled story unit per card
+        └── 10 evidence cards per chapter
+            └── top text · middle scene · bottom change record
 ```
 
-Front matter titled **How We Know** explains the manuscripts, earliest recoverable Greek, literary dependence, redaction, variants, and Josephus. It is not one of the 44 narrative chapters and does not consume the 440-card count.
+Front matter titled **What “Original” Can Honestly Mean** explains the lost autographs, critical editions, Gospel literary dependence, scribal variants, and translation history. It does not consume the 440-card count.
 
-## Five-Part book architecture
+## Seven-Part architecture
 
-### Part I · THE WITNESS — Chapters 01–06
+### Part I · COMMON GROUND — Chapters 01–05
 
-**Narrative job:** Establish John as an adult prophetic actor before Jesus enters the frame.
+**Narrative job:** Begin with the four canonical Gospel witnesses and the widely accepted core: John baptized, Jesus came, Spirit/voice traditions followed, and the tellings are not four independent votes.
 
-1. John to the Jordan: Source-Layer Orientation
-2. Wilderness Life
-3. Jordan and the Crowds
-4. John's Social Ethics
-5. Repentance, Fruit, and Judgment
-6. The Stronger One Comes
+1. Four Gospels, One Jordan Event
+2. What Mark Says First
+3. What Matthew Adds
+4. What Luke Reframes
+5. What John Remembers as Witness
 
-**Boundary:** Jesus may be anticipated but is not visually inserted into John's earlier life. Luke's infancy tradition belongs only in a labeled appendix.
+**Boundary:** Introduce redaction as normal literary comparison. Do not yet lead with the most contested manuscript variant.
 
-### Part II · THE WATER — Chapters 07–15
+### Part II · JOHN'S OWN STORY — Chapters 06–10
 
-**Narrative job:** Stage the encounter, distinguish the four Gospel tellings, and show the overlap and divergence of two baptism movements.
+6. John Appears in the Wilderness
+7. Jordan, Crowds, and Confession
+8. Share, Do Not Exploit
+9. Fruit, Axe, Winnowing, and Fire
+10. The Stronger One Comes
 
-7. Jesus Walks Toward the Jordan
-8. Mark: Earliest Extant Baptism Narrative
-9. Matthew: John's Objection Added
-10. Luke: The Baptizer Recedes
-11. John: Baptism Reframed as Witness
-12. John's Disciples
-13. Jesus' Disciples
-14. Baptism and Purification Dispute
-15. He Must Increase
+**Boundary:** Jesus may be anticipated but not inserted into John's earlier life. Luke's infancy material is appendix-only.
 
-**Boundary:** Mark supplies the earliest extant narrative spine. Matthew, Luke, and the Fourth Gospel receive their own chapters so later explanation is not silently inserted into Mark.
+### Part III · JOHN & JESUS — Chapters 11–15
 
-### Part III · THE COST OF WITNESS — Chapters 16–24
+11. Jesus Walks to the Jordan
+12. John Baptizes Jesus
+13. Let It Be So Now
+14. John Points His Disciples Toward Jesus
+15. Two Baptism Movements · He Must Increase
 
-**Narrative job:** Show that witness means public ethics, conflict with power, uncertainty, imprisonment, death, and handover.
+**Boundary:** Mark supplies the earliest narrative spine; Matthew-only and Johannine-only dialogue is labeled where it appears.
+
+### Part IV · QUESTION, DEEDS, RETURN — Chapters 16–20
 
 16. John Challenges Herod
-17. Imprisonment
+17. John Is Imprisoned
 18. Are You the Coming One?
 19. Jesus Answers with Deeds
-20. Jesus Evaluates John
-21. Gospel Death Tradition
-22. Josephus: Political Threat Account
+20. The Report Returns · Jesus Evaluates John
+
+**Narrative arc:** John's messengers ask → they see/hear Jesus' works → Jesus sends the evidence back → after they leave, Jesus publicly evaluates John.
+
+### Part V · DEATH & HANDOVER — Chapters 21–24
+
+21. The Gospel Banquet and Execution Account
+22. Josephus: Political Threat and Machaerus
 23. John's Disciples Bury Him
-24. Jesus Hears the News
+24. John Is Handed Over · Jesus' Mission Expands
 
-**Boundary:** The Gospel banquet/marriage explanation and Josephus' political-crowd explanation are placed side by side, never collapsed into one uncontested account.
+**Boundary:** Gospel and Josephus explanations are adjacent but not collapsed.
 
-### Part IV · THE WAY OPENS — Chapters 25–36
-
-**Narrative job:** Follow Jesus after John's arrest through the earliest extant Markan story line, showing how repentance and preparation expand into healing, table fellowship, forgiveness, service, death, and the empty tomb.
+### Part VI · JESUS AFTER JOHN — Chapters 25–36
 
 25. After John Was Handed Over
 26. The Kingdom Has Drawn Near
@@ -86,11 +94,9 @@ Front matter titled **How We Know** explains the manuscripts, earliest recoverab
 35. Entering Jerusalem
 36. Death and Empty Tomb
 
-**Boundary:** John is not reintroduced as an eyewitness. This Part is the consequence of the handover, not an invented continuation of John beside Jesus.
+**Boundary:** Follow Mark as the earliest extant narrative spine. John is not reintroduced as an eyewitness.
 
-### Part V · THE LIGHT & LOVE — Chapters 37–44
-
-**Narrative job:** Present the Fourth Gospel's mature theology of witness, light, life, and love after the historical transition is already clear.
+### Part VII · LIGHT & LOVE — Chapters 37–44
 
 37. Witness to the Light
 38. Living Water
@@ -101,19 +107,22 @@ Front matter titled **How We Know** explains the manuscripts, earliest recoverab
 43. Love One Another
 44. Peace Be with You
 
-**Boundary:** Label this Part as a later Johannine theological layer. Do not retroject its distinctive sayings into the earliest Markan scenes or attribute them to John the Baptist unless the Fourth Gospel explicitly does so.
+**Boundary:** Label this as a later Johannine theological layer. It is the interpretive culmination, not evidence silently projected backward into Mark.
 
 ## Chapter architecture gate
 
-Every chapter brief must answer eight questions before card planning begins:
+Before cards are planned, every chapter answers:
 
-1. What is the chapter's single central question?
-2. What is its one-sentence conclusion?
-3. Which source is the narrative spine?
-4. Which later or external layers are compared?
-5. What must be excluded to avoid identity or source drift?
-6. What changes between the opening and ending state?
-7. What is the function of each of the ten cards?
-8. How does the final card hand the reader to the next chapter?
+1. What shared assumption lets the reader enter without defensiveness?
+2. What is the chapter's single evidence question?
+3. What is the earliest recoverable Greek passage and critical-edition basis?
+4. Which source is the narrative spine?
+5. Which later Gospel redactions are compared?
+6. Which actual manuscript variants exist, if any?
+7. Which later translations or editions are relevant, if any?
+8. What must be excluded to avoid identity or source drift?
+9. What are the ten card functions?
+10. How does the last card lead to the next chapter?
 
-If two unrelated conclusions compete, split or re-scope the chapter. Do not solve excess material by shrinking source notes or stacking multiple scenes into one card.
+If there is no documented textual variant, say so by omission; never invent one. If a variant is disputed, the dispute belongs on the card.
+

@@ -14,7 +14,8 @@ REQUIRED = {
     "episode_id", "batch_id", "john_identity", "timeline_order", "source_book",
     "source_verse", "speaker", "quote_type", "exact_quote", "greek",
     "scene_action", "caption", "accent_color", "certainty", "source_layer", "date", "parallel",
-    "historical_status", "note_label", "note", "raw_file", "final_file",
+    "historical_status", "note_label", "note", "critical_text_basis", "change_track",
+    "raw_file", "final_file",
 }
 
 
@@ -44,6 +45,15 @@ def main() -> None:
         if row.get("episode_id") in ids:
             errors.append(f"duplicate episode_id {row.get('episode_id')}")
         ids.add(row.get("episode_id", ""))
+        track = row.get("change_track", [])
+        if not track:
+            errors.append(f"row {idx} has no change_track entries")
+        for event_index, event in enumerate(track, start=1):
+            missing_event = {"date", "category", "witness", "statement", "certainty"} - event.keys()
+            if missing_event:
+                errors.append(f"row {idx} change_track {event_index} missing: {sorted(missing_event)}")
+            if event.get("category") not in {"GOSPEL_REDACTION", "SCRIBAL_VARIANT", "TRANSLATION_HISTORY"}:
+                errors.append(f"row {idx} change_track {event_index} has invalid category")
         for key in ("raw_file", "final_file"):
             path = args.batch_dir / row.get(key, "")
             if not path.is_file():
@@ -58,8 +68,8 @@ def main() -> None:
                     if key == "final_file":
                         checks = {
                             "brand header": (0.03, 0.11, 150),
-                            "quotation and source": (0.12, 0.42, 700),
-                            "labeled source block": (0.70, 0.91, 850),
+                            "Greek and literal text zone": (0.10, 0.38, 700),
+                            "version history zone": (0.67, 0.93, 850),
                         }
                         for label, (top, bottom, minimum) in checks.items():
                             if dark_pixel_count(image, top, bottom) < minimum:

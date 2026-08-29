@@ -98,13 +98,13 @@ def compose_scene(raw: Image.Image) -> Image.Image:
     scene_alpha = alpha.crop((left, top, right, bottom))
 
     max_width = int(w * 0.91)
-    max_height = int(h * 0.19)
+    max_height = int(h * 0.18)
     scale = min(max_width / scene.width, max_height / scene.height, 1.0)
     size = (max(1, int(scene.width * scale)), max(1, int(scene.height * scale)))
     scene = scene.resize(size, Image.Resampling.LANCZOS)
     scene_alpha = scene_alpha.resize(size, Image.Resampling.LANCZOS)
     x = (w - size[0]) // 2
-    y = int(h * 0.465)
+    y = int(h * 0.405)
     paper.paste(scene, (x, y), scene_alpha)
     return paper
 
@@ -125,10 +125,16 @@ def render_card(batch_dir: Path, item: dict) -> None:
         max(2, int(w * 0.003)),
     )
 
-    centered(draw, int(h * 0.135), "LITERAL ENGLISH", font(max(11, int(w * 0.013))), MUTED, w)
+    centered(draw, int(h * 0.105), "EARLIEST RECOVERABLE GREEK", font(max(11, int(w * 0.013))), MUTED, w)
+    centered(draw, int(h * 0.132), f'{item["source_book"]} {item["source_verse"]}', font(max(15, int(w * 0.019))), INK, w)
+
+    greek_y = int(h * 0.164)
+    centered_wrapped(draw, greek_y, item["greek"], font(max(13, int(w * 0.016))), MUTED, w, int(w * 0.80), 27)
+
+    centered(draw, int(h * 0.218), "LITERAL ENGLISH", font(max(11, int(w * 0.013))), MUTED, w)
 
     quote_face = font(max(28, int(w * 0.041)))
-    quote_y = int(h * 0.17)
+    quote_y = int(h * 0.248)
     quote_y = centered_wrapped(
         draw,
         quote_y,
@@ -137,36 +143,46 @@ def render_card(batch_dir: Path, item: dict) -> None:
         INK,
         w,
         int(w * 0.80),
-        int(quote_face.size * 1.42),
+        int(quote_face.size * 1.25),
     )
 
-    verse_y = quote_y + int(h * 0.012)
-    centered(draw, verse_y, f'{item["source_book"]} {item["source_verse"]}', font(max(15, int(w * 0.019))), INK, w)
-    greek_label_y = verse_y + int(h * 0.032)
-    centered(draw, greek_label_y, "EARLIEST RECOVERABLE GREEK", font(max(11, int(w * 0.013))), MUTED, w)
-    greek_y = greek_label_y + int(h * 0.028)
-    centered_wrapped(draw, greek_y, item["greek"], font(max(13, int(w * 0.016))), MUTED, w, int(w * 0.78), 27)
+    source_line = f'{item["speaker"]} · {item["source_layer"]} · {item["date"]}'
+    centered_wrapped(draw, int(h * 0.325), source_line, font(max(10, int(w * 0.012))), MUTED, w, int(w * 0.86), 22)
+    basis = item.get("critical_text_basis", "SBLGNT critical text")
+    centered_wrapped(draw, int(h * 0.355), f'CRITICAL TEXT: {basis}', font(max(10, int(w * 0.011))), MUTED, w, int(w * 0.86), 20)
 
-    caption_y = int(h * 0.675)
+    caption_y = int(h * 0.615)
     spaced_text(draw, caption_y, item["caption"], font(max(13, int(w * 0.016))), INK, w, 2)
 
-    meta_face = font(max(12, int(w * 0.014)))
-    meta_y = int(h * 0.72)
-    metadata = [
-        f'SOURCE: {item["source_book"]} {item["source_verse"]}',
-        f'SOURCE LAYER: {item["source_layer"].upper()}',
-        f'DATE: {item["date"]}',
-        f'PARALLEL: {item["parallel"]}',
-        f'HISTORICAL STATUS: {item["historical_status"]}',
-        f'{item["note_label"]}: {item["note"]}',
-    ]
-    for line in metadata:
-        meta_y = centered_wrapped(draw, meta_y, line, meta_face, MUTED, w, int(w * 0.86), 20)
-        meta_y += 8
+    rule_y = int(h * 0.665)
+    draw.line((int(w * 0.09), rule_y, int(w * 0.91), rule_y), fill="#d8d5ce", width=2)
+    centered(draw, int(h * 0.682), "TEXT & VERSION HISTORY", font(max(12, int(w * 0.014))), INK, w)
 
-    mark_y = int(h * 0.93)
+    timeline = item.get("change_track", [])[:4]
+    timeline_y = int(h * 0.72)
+    left = int(w * 0.12)
+    dot_x = int(w * 0.18)
+    if timeline:
+        draw.line((dot_x, timeline_y + 4, dot_x, timeline_y + len(timeline) * int(h * 0.045)), fill="#b8b4ad", width=2)
+    date_face = font(max(10, int(w * 0.012)))
+    body_face = font(max(10, int(w * 0.011)))
+    for event in timeline:
+        draw.ellipse((dot_x - 4, timeline_y + 6, dot_x + 4, timeline_y + 14), fill=INK)
+        draw.text((left, timeline_y), event["date"], font=date_face, fill=INK, anchor="ra")
+        category = event["category"].replace("_", " ")
+        headline = f'{category} · {event["witness"]}'
+        draw.text((dot_x + 18, timeline_y), headline, font=date_face, fill=INK)
+        statement_lines = wrap(draw, event["statement"], body_face, int(w * 0.66))[:2]
+        for offset, line in enumerate(statement_lines):
+            draw.text((dot_x + 18, timeline_y + 20 + offset * 18), line, font=body_face, fill=MUTED)
+        timeline_y += int(h * 0.052)
+
+    status_y = int(h * 0.92)
+    centered_wrapped(draw, status_y, f'EVIDENCE STATUS: {item["historical_status"]}', body_face, MUTED, w, int(w * 0.82), 18)
+
+    mark_y = int(h * 0.945)
     draw_leaf_mark(draw, w, mark_y)
-    spaced_text(draw, int(h * 0.965), "GGC Spirituality Series", font(max(11, int(w * 0.014))), INK, w, 3)
+    spaced_text(draw, int(h * 0.985), "GGC Spirituality Series", font(max(10, int(w * 0.012))), INK, w, 3)
 
     final = Image.alpha_composite(raw.convert("RGBA"), overlay).convert("RGB")
     out = batch_dir / item["final_file"]
