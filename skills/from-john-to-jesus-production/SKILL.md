@@ -7,6 +7,8 @@ description: Plan, research, produce, audit, and publish the 44-chapter GGC “F
 
 Produce one complete chapter of 10 separate 4:5 final PNG evidence cards at a time. A chapter is not complete until its images, ledger rows, chapter README, progress index, and portal index agree.
 
+For the separate 54-card companion playing deck, read [Gospel playing-card mode](references/playing-card-deck-spec.md). The deck uses the same identity and source gates but has its own print dimensions and fixed four-suit map.
+
 ## Primary purpose
 
 This is a public-facing textual-history archive, not a generic devotional illustration series. Its central claim is deliberately narrow:
