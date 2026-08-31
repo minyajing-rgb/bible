@@ -5,7 +5,7 @@ Status: **mapping and production specification locked · proof batch 01 complete
 ## Contents
 
 - `ledger.json` — all 54 cards, source identities, verses, story functions, and visual beats
-- `final/` — print-front proofs at 815 × 1110 px; currently contains both Jokers
+- `final/` — 815 × 1110 px proofs; currently contains both Jokers, four Aces, and the common back
 - `proof/jokers-contact-sheet.jpg` — side-by-side visual proof
 - `proof/aces-and-back-contact-sheet.jpg` — four Aces plus the common back
 - `proof/style-proof-7-contact-sheet.jpg` — complete seven-asset style lock
