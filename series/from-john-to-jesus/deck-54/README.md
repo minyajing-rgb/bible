@@ -1,13 +1,17 @@
 # From John to Jesus · Gospel Playing Cards
 
-Status: **mapping and production specification locked · rendering pending**
+Status: **mapping and production specification locked · two Joker proofs rendered · suited cards pending**
 
 ## Contents
 
 - `ledger.json` — all 54 cards, source identities, verses, story functions, and visual beats
-- planned `final/` — print-ready fronts at 815 × 1110 px
+- `final/` — print-front proofs at 815 × 1110 px; currently contains both Jokers
+- `proof/jokers-contact-sheet.jpg` — side-by-side visual proof
 - planned `print/` — fronts and backs with 3 mm bleed
-- planned `proof/` — contact sheets and printer proof PDF
+- planned `proof/` — complete contact sheets and printer proof PDF
+
+Both Jokers are explicitly marked as contemporary symbolic designs. Neither is
+presented as a Gospel quotation or an ancient textual witness.
 
 ## Production batches
 
@@ -19,4 +23,3 @@ Status: **mapping and production specification locked · rendering pending**
 6. Print proof, source audit, and packaging
 
 The playing deck is a companion index to the 440-card research archive. It does not replace the full three-zone evidence cards.
-
