@@ -9,9 +9,12 @@ from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageOps
 ROOT = Path(__file__).resolve().parent
 RAW = ROOT / "raw"
 FINAL = ROOT / "final"
+PRINT = ROOT / "print"
 PROOF = ROOT / "proof"
 
 CARD = (815, 1110)
+BLEED = 35
+TRIM = (CARD[0] - BLEED * 2, CARD[1] - BLEED * 2)
 BG = (250, 249, 246)
 INK = (35, 34, 32)
 GOLD = (190, 142, 47)
@@ -58,15 +61,33 @@ def corner(draw: ImageDraw.ImageDraw, label: str, accent, flip: bool = False) ->
     d.text((12, 106), label, font=font(13, True), fill=INK)
     if flip:
         layer = layer.rotate(180)
-        draw._image.alpha_composite(layer, (CARD[0] - 145, CARD[1] - 176))
+        draw._image.alpha_composite(layer, (CARD[0] - 145 - 54, CARD[1] - 176 - 50))
     else:
-        draw._image.alpha_composite(layer, (0, 0))
+        draw._image.alpha_composite(layer, (54, 50))
+
+
+def save_print_and_trim(card: Image.Image, out_name: str) -> Path:
+    PRINT.mkdir(parents=True, exist_ok=True)
+    FINAL.mkdir(parents=True, exist_ok=True)
+    print_output = PRINT / out_name
+    final_output = FINAL / out_name
+    rgb = card.convert("RGB")
+    rgb.save(print_output, quality=96, dpi=(300, 300))
+    rgb.crop((BLEED, BLEED, CARD[0] - BLEED, CARD[1] - BLEED)).save(
+        final_output, quality=96, dpi=(300, 300)
+    )
+    return final_output
 
 
 def render(raw_name: str, out_name: str, joker_label: str, title: str, subtitle: str, accent) -> Path:
     card = Image.new("RGBA", CARD, BG + (255,))
     draw = ImageDraw.Draw(card)
-    draw.rounded_rectangle((18, 18, CARD[0] - 18, CARD[1] - 18), radius=28, outline=(91, 88, 82), width=2)
+    draw.rounded_rectangle(
+        (BLEED + 10, BLEED + 10, CARD[0] - BLEED - 10, CARD[1] - BLEED - 10),
+        radius=28,
+        outline=(91, 88, 82),
+        width=2,
+    )
 
     corner(draw, joker_label, accent)
     corner(draw, joker_label, accent, flip=True)
@@ -93,16 +114,13 @@ def render(raw_name: str, out_name: str, joker_label: str, title: str, subtitle:
     centered(draw, 966, "CONTEMPORARY SYMBOLIC DESIGN · NO VERSE CLAIM", font(13), fill=(94, 90, 84))
     centered(draw, 1001, "Companion deck to the 440-card text-history archive", font(12), fill=(112, 108, 101))
 
-    FINAL.mkdir(parents=True, exist_ok=True)
-    output = FINAL / out_name
-    card.convert("RGB").save(output, quality=96, dpi=(300, 300))
-    return output
+    return save_print_and_trim(card, out_name)
 
 
 def contact_sheet(paths: list[Path]) -> None:
     cards = [Image.open(path).convert("RGB") for path in paths]
     thumb_w = 408
-    thumb_h = round(CARD[1] * thumb_w / CARD[0])
+    thumb_h = round(TRIM[1] * thumb_w / TRIM[0])
     sheet = Image.new("RGB", (thumb_w * 2 + 72, thumb_h + 72), (235, 233, 228))
     for index, card in enumerate(cards):
         card.thumbnail((thumb_w, thumb_h), Image.Resampling.LANCZOS)

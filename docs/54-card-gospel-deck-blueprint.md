@@ -34,7 +34,11 @@ The suit system is editorial navigation, not a claim of equal independence or id
 Standard poker size: **63 × 88 mm**, with **3 mm bleed** on all sides.
 
 - Print canvas: 69 × 94 mm; 300 dpi = approximately 815 × 1110 px.
-- Safe zone: keep all rank, verse, and essential faces at least 6 mm from the trim edge.
+- Bleed: 3 mm on every side. `print/` contains 815 × 1110 px files; `final/`
+  contains the trimmed 63 × 88 mm version.
+- Trim box: approximately 745 × 1040 px, centered inside the print canvas.
+- Safe zone: keep rank, suit, verse, and essential faces visibly inside the trim
+  edge. The corner indexes must not touch either the physical edge or the trim line.
 - Mirrored rank and suit indexes in top-left and bottom-right.
 - Center: one ultra-minimal black-line story scene.
 - Bottom: short literal English line + book/verse + source-layer badge.
@@ -43,7 +47,23 @@ Standard poker size: **63 × 88 mm**, with **3 mm bleed** on all sides.
 
 ## Card back
 
-Two-way rotational symmetry. Central leaf-over-water mark sits inside a radiant-heart geometry. Warm white ground, black line, one muted light accent. The back contains no rank, verse, or orientation clue.
+Two-way rotational symmetry. A restrained line-drawn sun is the dominant mark on
+a warm-white ground. Two small pointed hearts may meet at the center with their
+tips overlapping slightly. Black line plus one pale-gold accent only. The back
+contains no rank, verse, text, or orientation clue.
+
+## Production and review order
+
+After the Joker/Ace style proof, complete one Gospel A–K sequence at a time:
+
+1. Mark / Spades
+2. Matthew / Diamonds
+3. Luke / Clubs
+4. John / Hearts
+
+Every card receives two content checks before illustration and a third
+post-layout visual/source check before publication. The check record lives in
+`series/from-john-to-jesus/deck-54/audit/verified-cards.json`.
 
 ## Joker rules
 
@@ -72,4 +92,3 @@ Every suited card must contain:
 - archive ID linking to the full Greek and change record.
 
 Cards that represent actual manuscript variants—especially Luke 3:22 and John 1:34—carry a small `VARIANT` mark and link to both readings.
-
