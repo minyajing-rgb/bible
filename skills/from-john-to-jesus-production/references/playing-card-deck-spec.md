@@ -47,3 +47,16 @@ misleading picture acceptable.
    its remaining art.
 5. Audit source identity, trim-safe spacing, and 3 mm bleed after every batch.
 6. Do not publish a partial set as a final deck; label interim outputs `PROOF`.
+
+## Packaging gate
+
+The 54-card deck includes a tuck box. Use the same warm-white, charcoal, and
+pale-gold sun system as the common back. The front carries the series title;
+the back carries the four-Gospel suit map and the source-integrity statement;
+the sides carry the series and subtitle. Keep all essential text inside the
+vendor's safe zone and extend background artwork through 3 mm bleed.
+
+The repository may contain a generic review dieline, but mass-production files
+must use the selected printer's certified AI/PDF dieline. Confirm card stock,
+finished internal depth, glue flap, tuck flap, bottom lock, CMYK profile, QR/URL,
+and a fully loaded physical proof before print approval.

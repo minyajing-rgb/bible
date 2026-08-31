@@ -1,6 +1,6 @@
 # From John to Jesus · Gospel Playing Cards
 
-Status: **54-card map locked · proof batch 01 revised · Mark A–K source audit complete**
+Status: **54-card map locked · Mark/Spades A–K rendered and audited · tuck-box proof complete**
 
 ## Contents
 
@@ -9,6 +9,9 @@ Status: **54-card map locked · proof batch 01 revised · Mark A–K source audi
 - `final/` — 745 × 1040 px trim-size files; currently contains both Jokers, four Aces, and the common back
 - `audit/verified-cards.json` — two-pass Greek/source/context records; Mark A–K is complete
 - `audit_deck.py` — blocks publication when source, speaker, rank structure, or bleed/trim pairs fail
+- `raw/spades-*.png` — accepted no-text illustrations for Mark ranks 2–K
+- `proof/spades-mark-a-k-contact-sheet.jpg` — complete Mark/Spades visual audit
+- `packaging/` — tuck-box artwork, panel crops, generic review dieline, and manufacturing gate
 - `proof/jokers-contact-sheet.jpg` — side-by-side visual proof
 - `proof/aces-and-back-contact-sheet.jpg` — four Aces plus the common back
 - `proof/style-proof-7-contact-sheet.jpg` — complete seven-asset style lock
@@ -27,7 +30,7 @@ and the physical edge.
 ## Production order
 
 1. Jokers + four Aces + sun back: revised print proof complete
-2. Mark / Spades A–K: thirteen content records double-checked; art A complete
+2. Mark / Spades A–K: thirteen content records and thirteen finished cards complete
 3. Matthew / Diamonds A–K
 4. Luke / Clubs A–K
 5. John / Hearts A–K

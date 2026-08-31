@@ -6,6 +6,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from render_spades_mark import MARK_CARDS
+
 
 ROOT = Path(__file__).resolve().parent
 RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
@@ -84,4 +86,33 @@ missing_mark = [card_id for card_id in mark_ids if card_id not in verified]
 if missing_mark:
     fail(f"Mark A–K second pass incomplete: {missing_mark}")
 
-print(f"DECK AUDIT PASSED: 54 cards; {len(verified)} source records verified; Mark A–K complete")
+rendered_mark = {card["id"]: card for card in MARK_CARDS}
+for card_id in mark_ids:
+    record = verified[card_id]
+    rendered = rendered_mark.get(card_id)
+    if not rendered:
+        fail(f"{card_id} is absent from the Mark renderer")
+    if rendered["source"] != record["quote_verse"]:
+        fail(f"{card_id} rendered source does not match audit")
+    if rendered["quote"] != record.get("display_quote"):
+        fail(f"{card_id} rendered display quote does not match audit")
+    for folder, size in (("print", (815, 1110)), ("final", (745, 1040))):
+        filename = rendered["output"]
+        path = ROOT / folder / filename
+        if not path.exists() or Image.open(path).size != size:
+            fail(f"{card_id} is missing a valid {folder} render")
+
+packaging_expected = {
+    ROOT / "packaging" / "print" / "tuck-box-artwork.png": (2220, 1723),
+    ROOT / "packaging" / "proof" / "tuck-box-dieline-proof.png": (2220, 1723),
+    ROOT / "packaging" / "final" / "tuck-box-front.png": (768, 1063),
+    ROOT / "packaging" / "final" / "tuck-box-back.png": (768, 1063),
+}
+for path, size in packaging_expected.items():
+    if not path.exists() or Image.open(path).size != size:
+        fail(f"packaging asset {path.name} is missing or has the wrong size")
+
+print(
+    f"DECK AUDIT PASSED: 54 cards; {len(verified)} source records verified; "
+    "Mark A–K rendered; packaging proof complete"
+)

@@ -92,3 +92,13 @@ Every suited card must contain:
 - archive ID linking to the full Greek and change record.
 
 Cards that represent actual manuscript variants—especially Luke 3:22 and John 1:34—carry a small `VARIANT` mark and link to both readings.
+
+## Tuck-box packaging
+
+- Internal-size assumption for the proof: 65 × 90 × 20 mm for 54 poker cards.
+- Artwork extends through 3 mm bleed; essential type remains inside the panel safe zone.
+- Front: two-way sun with pointed hearts, series title, subtitle, and 54-card label.
+- Back: four-Gospel suit map, John-the-Baptist identity lock, and source-integrity statement.
+- Sides: `FROM JOHN TO JESUS` and `THE WITNESS · THE WATER · THE LIGHT`.
+- `bible.saga1001.com` is the intended archive URL after DNS and SSL activation.
+- The repository dieline is a review proof. Replace it with the printer's certified dieline before mass production.

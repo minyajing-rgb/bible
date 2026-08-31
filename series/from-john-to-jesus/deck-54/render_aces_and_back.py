@@ -34,6 +34,7 @@ SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 CARDS = [
     {
         "id": "SP-A",
+        "rank": "A",
         "suit": "♠",
         "gospel": "MARK",
         "raw": "ace-spades-mark.png",
@@ -47,6 +48,7 @@ CARDS = [
     },
     {
         "id": "DI-A",
+        "rank": "A",
         "suit": "♦",
         "gospel": "MATTHEW",
         "raw": "ace-diamonds-matthew.png",
@@ -60,6 +62,7 @@ CARDS = [
     },
     {
         "id": "CL-A",
+        "rank": "A",
         "suit": "♣",
         "gospel": "LUKE",
         "raw": "ace-clubs-luke.png",
@@ -73,6 +76,7 @@ CARDS = [
     },
     {
         "id": "HE-A",
+        "rank": "A",
         "suit": "♥",
         "gospel": "JOHN",
         "raw": "ace-hearts-john.png",
@@ -150,13 +154,17 @@ def save_print_and_trim(card: Image.Image, filename: str, colors: int = 256) -> 
     FINAL.mkdir(parents=True, exist_ok=True)
     print_output = PRINT / filename
     final_output = FINAL / filename
+    print_tmp = print_output.with_name(f".{print_output.name}.tmp")
+    final_tmp = final_output.with_name(f".{final_output.name}.tmp")
     rgb = card.convert("RGB")
     rgb.quantize(colors=colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(
-        print_output, optimize=True, compress_level=9, dpi=(300, 300)
+        print_tmp, format="PNG", optimize=False, compress_level=6, dpi=(300, 300)
     )
     rgb.crop((BLEED, BLEED, CARD[0] - BLEED, CARD[1] - BLEED)).quantize(
         colors=colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE
-    ).save(final_output, optimize=True, compress_level=9, dpi=(300, 300))
+    ).save(final_tmp, format="PNG", optimize=False, compress_level=6, dpi=(300, 300))
+    print_tmp.replace(print_output)
+    final_tmp.replace(final_output)
     return final_output
 
 
@@ -169,8 +177,8 @@ def render_front(data: dict) -> Path:
         outline=(91, 88, 82),
         width=2,
     )
-    corner(card, "A", data["suit"], data["accent"])
-    corner(card, "A", data["suit"], data["accent"], flip=True)
+    corner(card, data.get("rank", "A"), data["suit"], data["accent"])
+    corner(card, data.get("rank", "A"), data["suit"], data["accent"], flip=True)
 
     centered(draw, 83, "GGC SPIRITUALITY SERIES", font(14), MUTED)
     centered(draw, 112, "FROM JOHN TO JESUS", font(15, True), INK)
@@ -188,7 +196,7 @@ def render_front(data: dict) -> Path:
     centered(draw, 890, f'{data["source"]}  ·  {data["date"]}', font(15, True), data["accent"])
 
     badge_text = data["layer"]
-    badge_font = font(12, True)
+    badge_font = font(12 if len(badge_text) < 33 else 10, True)
     badge_w = text_width(draw, badge_text, badge_font) + 34
     draw.rounded_rectangle(
         ((CARD[0] - badge_w) / 2, 930, (CARD[0] + badge_w) / 2, 963),
