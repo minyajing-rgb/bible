@@ -23,6 +23,7 @@ This repository is the production archive for a 44-batch, 440-image historical a
 - [Approved visual anchor](skills/from-john-to-jesus-production/assets/approved-minimal-line-style.png)
 - [54-card Gospel deck blueprint](docs/54-card-gospel-deck-blueprint.md)
 - [54-card deck ledger](series/from-john-to-jesus/deck-54/ledger.json)
+- [Publishing and distribution matrix](docs/publishing-distribution-matrix.md)
 
 ## Historical baseline
 
