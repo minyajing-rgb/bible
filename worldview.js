@@ -31,15 +31,17 @@ const events = [
   {id:"papyrus",range:[1,44],eventTime:"c. 125–400 CE",layer:"manuscript",timeZh:"抄本见证",timeEn:"Manuscript witness",zh:"纸草、圣名与大型抄本",en:"PAPYRI, SACRED NAMES & CODICES",place:"现存见证层 · Surviving witnesses",center:[31.2,30.2],zoom:5.8,cards:"Ι̅C̅ · FOUR GOSPELS",descZh:"读者进入文本史：现存残片、圣名缩写与大型抄本塑造了我们今天能够比较的证据。",descEn:"The journey enters text history: fragments, sacred-name contractions, and major codices shape the evidence available today."}
 ];
 
-const fallbackImages = {
-  event:"/assets/cards/ace-spades-mark.png",
-  gospel:"/assets/cards/ace-hearts-john.png",
-  manuscript:"/assets/cards/spades-mark-contact-sheet.jpg"
-};
+const chapterPlaceholder = "/assets/chapter-placeholder.svg";
+const suitStories = [
+  {symbol:"♠",name:"MARK · 马可",image:"/assets/cards/ace-spades-mark.png",period:"c. 65–75 CE · A–K COMPLETE",zh:"最早现存的叙事骨架",en:"Earliest extant narrative spine"},
+  {symbol:"♦",name:"MATTHEW · 马太",image:"/assets/cards/ace-diamonds-matthew.png",period:"c. 80–95 CE · IN PRODUCTION",zh:"扩写、解释与回应",en:"Expansion, explanation, response"},
+  {symbol:"♣",name:"LUKE · 路加",image:"/assets/cards/ace-clubs-luke.png",period:"c. 80–95 CE · IN PRODUCTION",zh:"社会伦理与叙事重排",en:"Social ethics and reordered scenes"},
+  {symbol:"♥",name:"JOHN · 约翰",image:"/assets/cards/ace-hearts-john.png",period:"c. 90–100 CE · IN PRODUCTION",zh:"见证、光与神学重构",en:"Witness, light, theological reframing"}
+];
 
 const route = events.filter(event=>event.layer==="event").map(event=>event.center);
 const eventForChapter = chapter => events.find(event=>event.layer==="event" && chapter>=event.range[0] && chapter<=event.range[1]) || events[7];
-const state = {chapter:7,event:events[1],map:null,markers:[],language:document.documentElement.dataset.lang||"zh"};
+const state = {chapter:7,event:events[1],map:null,markers:[],view:"geo",language:document.documentElement.dataset.lang||"zh"};
 
 function copyForLanguage(zh,en){return state.language==="zh"?zh:en}
 
@@ -54,12 +56,11 @@ function selectChapter(chapter,fly=true){
   document.querySelector("#worldview-place").textContent=event.place;
   document.querySelector("#worldview-time").textContent=`${event.eventTime} · ${copyForLanguage(event.timeZh,event.timeEn)}`;
   document.querySelector("#worldview-card-map").textContent=event.cards;
-  document.querySelector("#worldview-selected-summary").textContent=`${String(chapter).padStart(2,"0")} · ${event.en}`;
   const image=document.querySelector("#worldview-image");
-  image.src=previewImages[chapter]||fallbackImages[event.layer];
+  image.src=previewImages[chapter]||chapterPlaceholder;
   image.alt=`${title[0]} visual preview`;
-  document.querySelector("#worldview-image-label").textContent=previewImages[chapter]?`CHAPTER ART · ${String(chapter).padStart(2,"0")} / 44`:`${event.layer.toUpperCase()} · VISUAL MAPPING`;
-  document.querySelectorAll(".chapter-orbit-grid button").forEach(button=>button.setAttribute("aria-pressed",String(Number(button.dataset.chapter)===chapter)));
+  document.querySelector("#worldview-image-label").textContent=previewImages[chapter]?`CHAPTER ART · ${String(chapter).padStart(2,"0")} / 44`:`CHAPTER ${String(chapter).padStart(2,"0")} · IN RESEARCH`;
+  document.querySelectorAll(".chapter-library-card").forEach(button=>button.setAttribute("aria-pressed",String(Number(button.dataset.chapter)===chapter)));
   document.querySelectorAll(".sacred-event").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.event===event.id)));
   state.markers.forEach(item=>item.element.classList.toggle("is-active",item.event.id===event.id));
   if(fly&&state.map)state.map.flyTo({center:event.center,zoom:event.zoom,pitch:52,bearing:event.center[1]>32?-18:10,duration:1800,essential:true});
@@ -75,24 +76,33 @@ function selectEvent(event){
   document.querySelector("#worldview-place").textContent=event.place;
   document.querySelector("#worldview-time").textContent=`${event.eventTime} · ${copyForLanguage(event.timeZh,event.timeEn)}`;
   document.querySelector("#worldview-card-map").textContent=event.cards;
-  document.querySelector("#worldview-selected-summary").textContent=`CH. ${range} · ${event.en}`;
-  const image=document.querySelector("#worldview-image");image.src=previewImages[event.range[0]]||fallbackImages[event.layer];image.alt=`${event.en} visual mapping`;
-  document.querySelector("#worldview-image-label").textContent=previewImages[event.range[0]]?`CHAPTER ART · ${String(event.range[0]).padStart(2,"0")} / 44`:`${event.layer.toUpperCase()} · VISUAL MAPPING`;
+  const image=document.querySelector("#worldview-image");image.src=previewImages[event.range[0]]||chapterPlaceholder;image.alt=`${event.en} sacred-history preview`;
+  document.querySelector("#worldview-image-label").textContent=previewImages[event.range[0]]?`CHAPTER ART · ${String(event.range[0]).padStart(2,"0")} / 44`:`SACRED HISTORY · CH. ${range}`;
   document.querySelectorAll(".sacred-event").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.event===event.id)));
   state.markers.forEach(item=>item.element.classList.toggle("is-active",item.event.id===event.id));
   if(state.map)state.map.flyTo({center:event.center,zoom:event.zoom,pitch:52,bearing:event.center[1]>32?-18:10,duration:1800,essential:true});
 }
 
-function buildChapterOrbit(){
+function buildChapterLibrary(){
   const grid=document.querySelector("#worldview-chapters");
-  grid.innerHTML=chapterTitles.map((title,index)=>`<button type="button" data-chapter="${index+1}" aria-pressed="${index===6}" aria-label="Chapter ${index+1}: ${title[0]}">${String(index+1).padStart(2,"0")}</button>`).join("");
+  grid.innerHTML=chapterTitles.map((title,index)=>{
+    const chapter=index+1;
+    const hasPreview=Boolean(previewImages[chapter]);
+    const status=hasPreview?(state.language==="zh"?"视觉预览已公开":"VISUAL PREVIEW LIVE"):(state.language==="zh"?"研究制作中":"IN RESEARCH");
+    return `<button type="button" class="chapter-library-card${hasPreview?" has-preview":""}" data-chapter="${chapter}" aria-pressed="${chapter===state.chapter}" aria-label="Chapter ${chapter}: ${title[0]}"><b>${String(chapter).padStart(2,"0")}</b><span><strong>${state.language==="zh"?title[1]:title[0]}</strong><small>${status}</small></span></button>`;
+  }).join("");
   grid.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>selectChapter(Number(button.dataset.chapter))));
+}
+
+function buildDeckWorld(){
+  const container=document.querySelector("#worldview-deck");
+  container.innerHTML=suitStories.map(suit=>`<article class="deck-world-suit"><img src="${suit.image}" alt="${suit.name} Gospel playing card"><div><h4>${suit.name}</h4><p><span data-copy="zh">${suit.zh}</span><span data-copy="en">${suit.en}</span></p><small>${suit.period}</small></div><b>${suit.symbol}</b></article>`).join("");
 }
 
 function buildTimeline(){
   const labels={event:["神圣事件","SACRED EVENTS"],gospel:["福音记忆与形成","GOSPEL MEMORY & COMPOSITION"],manuscript:["现存抄本见证","SURVIVING MANUSCRIPT WITNESSES"]};
   const container=document.querySelector("#sacred-timeline");
-  container.innerHTML=["event","gospel","manuscript"].map(layer=>`<section class="timeline-lane"><header><span>${labels[layer][0]}</span><small>${labels[layer][1]}</small></header><div>${events.filter(event=>event.layer===layer).map(event=>`<button type="button" class="sacred-event" data-event="${event.id}" aria-pressed="${event.id==="jordan"}"><time>${event.eventTime}</time><span><b>${event.zh}</b><em>${event.en}</em><small>CH. ${String(event.range[0]).padStart(2,"0")}–${String(event.range[1]).padStart(2,"0")} · ${event.cards}</small></span><i>＋</i></button>`).join("")}</div></section>`).join("");
+  container.innerHTML=["event","gospel","manuscript"].map(layer=>`<section class="timeline-lane"><header><span>${labels[layer][0]}</span><small>${labels[layer][1]}</small></header><div>${events.filter(event=>event.layer===layer).map(event=>`<button type="button" class="sacred-event" data-event="${event.id}" aria-pressed="${event.id==="jordan"}"><time>${event.eventTime}</time><span><b>${event.zh}</b><em>${event.en}</em><small>CH. ${String(event.range[0]).padStart(2,"0")}–${String(event.range[1]).padStart(2,"0")}</small></span><i>＋</i></button>`).join("")}</div></section>`).join("");
   container.querySelectorAll(".sacred-event").forEach(button=>button.addEventListener("click",()=>selectEvent(events.find(event=>event.id===button.dataset.event))));
 }
 
@@ -113,11 +123,13 @@ function buildMap(){
 }
 
 function setView(view){
+  state.view=view;
   document.querySelectorAll("[data-world-view]").forEach(button=>button.setAttribute("aria-selected",String(button.dataset.worldView===view)));
   document.querySelectorAll("[data-world-panel]").forEach(panel=>panel.hidden=panel.dataset.worldPanel!==view);
   if(view==="geo"&&state.map)setTimeout(()=>state.map.resize(),50);
+  if(view==="chapters")selectChapter(state.chapter,false);
 }
 
 document.querySelectorAll("[data-world-view]").forEach(button=>button.addEventListener("click",()=>setView(button.dataset.worldView)));
-window.addEventListener("bible:language",event=>{state.language=event.detail.language;selectChapter(state.chapter,false)});
-buildChapterOrbit();buildTimeline();buildMap();selectChapter(state.chapter,false);
+window.addEventListener("bible:language",event=>{state.language=event.detail.language;buildChapterLibrary();selectChapter(state.chapter,false)});
+buildChapterLibrary();buildDeckWorld();buildTimeline();buildMap();selectChapter(state.chapter,false);
