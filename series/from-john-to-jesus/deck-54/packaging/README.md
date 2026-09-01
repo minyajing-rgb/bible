@@ -1,4 +1,4 @@
-# Gospel Deck Tuck Box · Packaging Proof
+# Gospel Deck Packaging · Box and Linen Bag
 
 Status: **PROOF · generic printer dieline**
 
@@ -13,6 +13,8 @@ selected printer's certified dieline before mass production.
 - `proof/tuck-box-dieline-proof.png` — cut/fold overlay for review only
 - `final/tuck-box-front.png` — front-panel crop
 - `final/tuck-box-back.png` — back-panel crop
+- `bag/print/linen-bag-two-color-artwork.png` — transparent two-colour supplier artwork
+- `bag/proof/linen-bag-mockup.png` — unbleached linen drawstring-bag visual proof
 
 ## Visual lock
 
@@ -31,3 +33,6 @@ Before ordering, obtain the printer's AI/PDF dieline and confirm:
 3. CMYK profile, rich-black rule, minimum line width, and total ink limit;
 4. barcode/QR destination and whether `bible.saga1001.com` is already active;
 5. proof copy with all 54 cards inserted.
+
+For the bag, also confirm the supplier's printable area, colour/ink system,
+fabric shrinkage, seam allowance, drawstring channel, and minimum line width.

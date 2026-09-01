@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 
 from PIL import Image
+from pypdf import PdfReader
 
+from render_diamonds_matthew_batch01 import MATTHEW_BATCH_01
 from render_spades_mark import MARK_CARDS
 
 
@@ -102,6 +104,24 @@ for card_id in mark_ids:
         if not path.exists() or Image.open(path).size != size:
             fail(f"{card_id} is missing a valid {folder} render")
 
+matthew_batch_ids = ["DI-2", "DI-3", "DI-4", "DI-5", "DI-6", "DI-7", "DI-8", "DI-9", "DI-10", "DI-J"]
+rendered_matthew = {card["id"]: card for card in MATTHEW_BATCH_01}
+for card_id in matthew_batch_ids:
+    if card_id not in verified:
+        fail(f"{card_id} lacks two-pass verification")
+    record = verified[card_id]
+    rendered = rendered_matthew.get(card_id)
+    if not rendered:
+        fail(f"{card_id} is absent from the Matthew batch renderer")
+    if rendered["source"] != record["quote_verse"]:
+        fail(f"{card_id} rendered source does not match audit")
+    if rendered["quote"] != record.get("display_quote"):
+        fail(f"{card_id} rendered display quote does not match audit")
+    for folder, size in (("print", (815, 1110)), ("final", (745, 1040))):
+        path = ROOT / folder / rendered["output"]
+        if not path.exists() or Image.open(path).size != size:
+            fail(f"{card_id} is missing a valid {folder} render")
+
 packaging_expected = {
     ROOT / "packaging" / "print" / "tuck-box-artwork.png": (2220, 1723),
     ROOT / "packaging" / "proof" / "tuck-box-dieline-proof.png": (2220, 1723),
@@ -112,7 +132,28 @@ for path, size in packaging_expected.items():
     if not path.exists() or Image.open(path).size != size:
         fail(f"packaging asset {path.name} is missing or has the wrong size")
 
+companion_images = {
+    ROOT / "packaging" / "bag" / "print" / "linen-bag-two-color-artwork.png": (1800, 2400),
+    ROOT / "packaging" / "bag" / "proof" / "linen-bag-mockup.png": (1200, 1500),
+    ROOT / "guide" / "proof" / "instruction-leaflet-outside.png": (1313, 936),
+    ROOT / "guide" / "proof" / "instruction-leaflet-inside.png": (1313, 936),
+    ROOT / "marketing" / "promo-01-complete-product-system.png": (1350, 1688),
+    ROOT / "marketing" / "promo-02-four-gospels-four-suits.png": (1350, 1688),
+    ROOT / "marketing" / "promo-03-text-history-system.png": (1350, 1688),
+    ROOT / "marketing" / "promo-04-print-and-audit.png": (1350, 1688),
+}
+for path, size in companion_images.items():
+    if not path.exists() or Image.open(path).size != size:
+        fail(f"companion asset {path.name} is missing or has the wrong size")
+
+leaflet_path = ROOT / "guide" / "print" / "from-john-to-jesus-instruction-leaflet.pdf"
+if not leaflet_path.exists():
+    fail("instruction leaflet PDF is missing")
+leaflet = PdfReader(str(leaflet_path))
+if len(leaflet.pages) != 2:
+    fail(f"instruction leaflet must have 2 pages; found {len(leaflet.pages)}")
+
 print(
     f"DECK AUDIT PASSED: 54 cards; {len(verified)} source records verified; "
-    "Mark A–K rendered; packaging proof complete"
+    "Mark A–K and Matthew A–J rendered; box, bag, leaflet, and promo proofs complete"
 )
