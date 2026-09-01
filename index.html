@@ -7,12 +7,12 @@
   <meta property="og:title" content="From John to Jesus · 从约翰到耶稣">
   <meta property="og:description" content="The Witness · The Water · The Light — 44 chapters, four Gospels, one evidence-led journey.">
   <meta property="og:image" content="https://bible.saga1001.com/assets/cards/spades-mark-contact-sheet.jpg">
-  <meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/styles.css"><link rel="icon" href="/favicon.svg"><script src="/script.js" defer></script>
+  <meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.6.0/dist/maplibre-gl.css"><link rel="stylesheet" href="/styles.css"><link rel="icon" href="/favicon.svg"><script src="/script.js" defer></script><script type="module" src="/worldview.js"></script>
 </head>
 <body>
   <header class="site-header"><nav class="shell nav" aria-label="Primary navigation">
     <a class="brand" href="#top"><span class="brand-mark">GGC</span><span>FROM JOHN TO JESUS</span></a>
-    <div class="nav-links"><a href="#vision"><span data-copy="zh">为什么做</span><span data-copy="en">Vision</span></a><a href="#journey"><span data-copy="zh">44章</span><span data-copy="en">44 chapters</span></a><a href="#deck"><span data-copy="zh">福音扑克</span><span data-copy="en">Gospel deck</span></a><a href="#ama"><span data-copy="zh">AMA活动</span><span data-copy="en">AMA event</span></a><a href="#join"><span data-copy="zh">加入</span><span data-copy="en">Join</span></a></div>
+    <div class="nav-links"><a href="#vision"><span data-copy="zh">为什么做</span><span data-copy="en">Vision</span></a><a href="#journey"><span data-copy="zh">44章</span><span data-copy="en">44 chapters</span></a><a href="#worldview"><span data-copy="zh">世界地图</span><span data-copy="en">World map</span></a><a href="#deck"><span data-copy="zh">福音扑克</span><span data-copy="en">Gospel deck</span></a><a href="#ama"><span data-copy="zh">AMA活动</span><span data-copy="en">AMA event</span></a><a href="#join"><span data-copy="zh">加入</span><span data-copy="en">Join</span></a></div>
     <div class="language-switch" role="group" aria-label="Language"><button type="button" data-set-lang="zh" aria-pressed="true">中文</button><span>/</span><button type="button" data-set-lang="en" aria-pressed="false">EN</button></div>
   </nav></header>
 
@@ -50,6 +50,40 @@
       <div class="section-heading light-heading"><div><p class="section-kicker"><span data-copy="zh">44章路线图</span><span data-copy="en">THE 44-CHAPTER ROADMAP</span></p><h2><span data-copy="zh">从见证，到水，到光。</span><span data-copy="en">From witness, to water, to light.</span></h2></div><div class="progress-copy"><strong>01 / 44</strong><p><span data-copy="zh">第一章10张证据卡已完成；完整路线已建立，其余章节持续研究制作中。</span><span data-copy="en">Chapter 1's ten evidence cards are complete. The full route is mapped; the remaining chapters are in research and production.</span></p></div></div>
       <div class="progress-track"><span></span></div><div class="roadmap" id="roadmap"></div>
       <details class="chapter-index"><summary><span data-copy="zh">展开全部44章标题</span><span data-copy="en">Open all 44 chapter titles</span><i>＋</i></summary><ol id="chapter-list"></ol></details>
+    </div></section>
+
+    <section class="worldview-section" id="worldview"><div class="shell">
+      <div class="worldview-heading">
+        <div><p class="section-kicker"><span data-copy="zh">神圣历史 · 互动世界观</span><span data-copy="en">SACRED HISTORY · INTERACTIVE WORLD</span></p><h2><span data-copy="zh">故事发生在哪里，<br>记忆又在何时成为文本？</span><span data-copy="en">Where did the story unfold,<br>and when did memory become text?</span></h2></div>
+        <div class="worldview-symbol"><strong>Ἰωάννης → Ι̅C̅</strong><span>JOHN → JESUS</span><small><span data-copy="zh">约翰 → 耶稣 · 见证 → 圣名</span><span data-copy="en">John → Jesus · witness → sacred name</span></small></div>
+      </div>
+      <div class="worldview-shell">
+        <div class="worldview-controls" role="tablist" aria-label="Sacred history views">
+          <button type="button" role="tab" aria-selected="true" data-world-view="geo"><span data-copy="zh">GEO · 地理地图</span><span data-copy="en">GEO · MAP</span></button>
+          <button type="button" role="tab" aria-selected="false" data-world-view="timeline"><span data-copy="zh">TIMELINE · 三层时间轴</span><span data-copy="en">TIMELINE · THREE LAYERS</span></button>
+        </div>
+        <div class="worldview-main">
+          <div class="worldview-canvas" data-world-panel="geo">
+            <div id="sacred-map" aria-label="Interactive map of the From John to Jesus journey"></div>
+            <div class="map-title"><span data-copy="zh">约旦河谷 · 加利利 · 耶路撒冷</span><span data-copy="en">JORDAN VALLEY · GALILEE · JERUSALEM</span></div>
+            <div class="map-legend"><i></i><span data-copy="zh">点击金色节点，沿44章飞行</span><span data-copy="en">Select a gold node and fly through the 44 chapters</span></div>
+          </div>
+          <div class="worldview-canvas timeline-canvas" data-world-panel="timeline" hidden>
+            <div class="timeline-lanes" id="sacred-timeline"></div>
+          </div>
+          <aside class="worldview-detail" aria-live="polite">
+            <div class="worldview-image-wrap"><img id="worldview-image" src="/from-john-to-jesus/season-01/batch-01-john-to-jordan/final/06-mark-baptism.png" alt="Mark baptism chapter preview"><span id="worldview-image-label">CHAPTER ART · 05 / 44</span></div>
+            <p class="worldview-chapter" id="worldview-chapter">CHAPTER 05 / 44</p>
+            <h3 id="worldview-title">耶稣走向约旦河</h3>
+            <p class="worldview-en" id="worldview-title-en">JESUS WALKS TOWARD THE JORDAN</p>
+            <p class="worldview-description" id="worldview-description">故事从旷野的声音进入河流；地点、人物和四部福音书的叙述在这里第一次汇合。</p>
+            <dl class="worldview-facts"><div><dt><span data-copy="zh">地点</span><span data-copy="en">PLACE</span></dt><dd id="worldview-place">约旦河 · Jordan River</dd></div><div><dt><span data-copy="zh">时间层</span><span data-copy="en">TIME LAYER</span></dt><dd id="worldview-time">c. 28 CE · Sacred event</dd></div></dl>
+            <div class="worldview-card-map"><span><span data-copy="zh">扑克牌映射</span><span data-copy="en">GOSPEL CARD MAPPING</span></span><strong id="worldview-card-map">♠ A · ♦ A · ♣ A · ♥ A</strong></div>
+          </aside>
+        </div>
+        <div class="chapter-orbit"><div class="chapter-orbit-label"><span data-copy="zh">44章导航</span><span data-copy="en">44-CHAPTER NAVIGATION</span><small id="worldview-selected-summary">05 · THE JORDAN</small></div><div class="chapter-orbit-grid" id="worldview-chapters" aria-label="44 chapter navigation"></div></div>
+      </div>
+      <p class="worldview-boundary"><span data-copy="zh">地图坐标用于叙事导航；古代地点与年代存在学术不确定性。事件时间、福音书形成时间与现存抄本时间被分别标注。</span><span data-copy="en">Coordinates guide the narrative; ancient locations and dates carry scholarly uncertainty. Event time, Gospel-composition time, and manuscript time are kept distinct.</span></p>
     </div></section>
 
     <section class="deck-section shell" id="deck">
