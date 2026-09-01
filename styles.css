@@ -106,3 +106,36 @@ body{background:#fff}
 .gift{border-color:var(--line)}
 .interest-form{background:#fff;border-color:#d8d5cd;border-top-color:var(--gold);box-shadow:0 22px 55px rgba(24,29,25,.08)}
 footer{background:var(--deep);border-top-color:var(--gold)}
+
+/* In-page archive and AMA — audience-facing, no repository handoff. */
+.chapter-preview{margin-top:72px;display:grid;grid-template-columns:.72fr 1.28fr;border:1px solid var(--line);background:#fff;box-shadow:0 22px 55px rgba(24,29,25,.07);overflow:hidden}
+.chapter-preview-copy{padding:62px 52px;align-self:center}
+.chapter-preview-copy h3{font-family:Georgia,"Noto Serif SC",serif;font-size:38px;font-weight:400;line-height:1.15;margin:18px 0 24px}
+.chapter-preview-copy>p:not(.section-kicker){font-size:14px;line-height:1.9;color:var(--muted);margin:0 0 30px}
+.chapter-preview figure{margin:0;padding:28px;background:radial-gradient(circle at 50% 30%,rgba(242,229,190,.36),transparent 30%),#f8f8f6;display:flex;flex-direction:column;justify-content:center}
+.chapter-preview figure img{display:block;width:100%;max-height:760px;object-fit:contain;filter:drop-shadow(0 18px 25px rgba(24,29,25,.12))}
+.chapter-preview figcaption{text-align:center;font-size:9px;letter-spacing:.14em;color:var(--muted);margin-top:15px;text-transform:uppercase}
+.ama-section{padding:112px 0;background:#fff;border-top:1px solid var(--line)}
+.ama-poster{display:block;margin-top:62px;border:1px solid #d8d5cd;box-shadow:0 24px 60px rgba(31,31,38,.12);transition:transform .22s,box-shadow .22s}
+.ama-poster:hover{transform:translateY(-3px);box-shadow:0 30px 72px rgba(31,31,38,.16)}
+.ama-poster img{display:block;width:100%;height:auto}
+.ama-bottom{margin-top:36px;display:grid;grid-template-columns:1.35fr .65fr;gap:36px;align-items:stretch}
+.ama-topics{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line)}
+.ama-topics article{padding:24px 26px;min-height:145px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.ama-topics article:nth-child(2n){border-right:0}
+.ama-topics article:nth-child(n+3){border-bottom:0}
+.ama-topics article:nth-child(1){box-shadow:inset 0 3px #b94d48}.ama-topics article:nth-child(2){box-shadow:inset 0 3px #b68a32}.ama-topics article:nth-child(3){box-shadow:inset 0 3px #5140a0}.ama-topics article:nth-child(4){box-shadow:inset 0 3px #2f6a4f}
+.ama-topics article>span{font-family:Georgia,serif;font-size:20px;color:var(--gold)}
+.ama-topics h3{font-family:Georgia,"Noto Serif SC",serif;font-size:18px;font-weight:400;margin:18px 0 8px}
+.ama-topics p{font-size:11px;line-height:1.65;color:var(--muted);margin:0}
+.ama-actions{padding:34px;border:1px solid var(--line);border-top:4px solid var(--gold);display:flex;flex-direction:column;justify-content:center;gap:12px;background:#fff}
+.ama-actions .button{width:100%}
+.ama-actions p{font-size:11px;line-height:1.7;color:var(--muted);margin:8px 0 0}
+.ama-deep-dive{margin-top:36px;padding:38px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;border:1px solid var(--line);background:#fff}
+.ama-deep-dive ul{list-style:none;padding:0;margin:22px 0 0}
+.ama-deep-dive li{padding:12px 0;border-top:1px solid var(--line);font-family:Georgia,"Noto Serif SC",serif;font-size:16px;line-height:1.5}
+.audience-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.audience-tags>span{display:inline-flex;padding:10px 12px;border:1px solid var(--line);font-size:10px;line-height:1.4;background:#fff}
+.audience-tags>span:nth-child(1){border-color:rgba(185,77,72,.38)}.audience-tags>span:nth-child(2){border-color:rgba(182,138,50,.45)}.audience-tags>span:nth-child(3){border-color:rgba(81,64,160,.3)}.audience-tags>span:nth-child(4){border-color:rgba(47,106,79,.38)}
+@media(max-width:960px){.chapter-preview{grid-template-columns:1fr}.chapter-preview-copy{padding:48px}.ama-bottom{grid-template-columns:1fr}}
+@media(max-width:700px){.chapter-preview{margin-top:48px}.chapter-preview-copy{padding:34px 24px}.chapter-preview-copy h3{font-size:31px}.chapter-preview figure{padding:16px}.ama-section{padding:78px 0}.ama-poster{margin-top:40px}.ama-topics{grid-template-columns:1fr}.ama-topics article,.ama-topics article:nth-child(2n),.ama-topics article:nth-child(n+3){border-right:0;border-bottom:1px solid var(--line)}.ama-topics article:last-child{border-bottom:0}.ama-actions{padding:26px 22px}.ama-deep-dive{padding:28px 22px;grid-template-columns:1fr;gap:32px}}
