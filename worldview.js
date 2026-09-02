@@ -11,6 +11,8 @@ const chapterTitles = [
 const previewImages = {
   1: "/from-john-to-jesus/season-01/batch-01-john-to-jordan/final/01-john-appears.png",
   2: "/from-john-to-jesus/season-01/batch-01-john-to-jordan/final/02-jordan-crowds.png",
+  3: "/assets/chapters/chapter-03-jordan-and-the-crowds-v1.png",
+  4: "/assets/chapters/chapter-04-johns-social-ethics-v1.png",
   6: "/from-john-to-jesus/season-01/batch-01-john-to-jordan/final/06-mark-baptism.png",
   8: "/from-john-to-jesus/season-01/batch-01-john-to-jordan/final/08-let-it-be-so-now.png",
   10: "/from-john-to-jesus/season-01/batch-01-john-to-jordan/final/10-john-witnesses.png"

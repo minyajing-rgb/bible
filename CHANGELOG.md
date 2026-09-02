@@ -2,6 +2,12 @@
 
 This file mirrors the audience-facing bilingual release log at `/updates.html`.
 
+## v0.4.1 — Chapter Visual Batch 01 (2026-09-03)
+
+- Added independent website visuals for Chapter 03, *Jordan and the Crowds*, and Chapter 04, *John's Social Ethics*.
+- Kept chapter art separate from the Gospel playing-card mapping system.
+- The public chapter library now includes 7 of 44 chapter-specific visuals; 37 remain in research and production.
+
 ## v0.4.0 — Founding Reader Release (2026-09-01)
 
 - Added the bilingual printable Project Brochure with the vision, project system, all 44 bilingual chapter mini cards, Gospel-deck mapping, evidence boundary, and participation pathways.
